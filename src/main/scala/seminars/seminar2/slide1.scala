@@ -1,4 +1,4 @@
-package seminars.seminar1
+package seminars.seminar2
 
 import scala.util.Random
 
@@ -16,6 +16,19 @@ object ifs extends App {
 
   println(if (Random.nextInt % 2 == 0) "Is even" else "Is odd")
 
+  println()
+
+  class Dummy {
+    override def equals(obj: Any): Boolean = {
+      println("Equals!")
+      obj.isInstanceOf[Dummy]
+    }
+  }
+
+  val dummy = new Dummy()
+  // Оператор == использует .equals, а не сравнение по ссылке. Тип при этом автоматически не проверяется
+  println(dummy == dummy)
+  println(dummy == "String")
 }
 
 object fors extends App {

@@ -29,6 +29,10 @@ object methodsAndFunctions extends App {
 
   // Преобразование метода в функцию (eta expansion)
   val greeterFunction = greeter _
+
+  println(
+    List("A", "B", "C").map(greeter).mkString("\n")
+  )
 }
 
 object namedParameters extends App {

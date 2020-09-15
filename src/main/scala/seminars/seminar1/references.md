@@ -5,4 +5,3 @@
 * https://www.scala-exercises.org/scala_tutorial/tail_recursion - хвостовая рекурсия (слайд 3)
 * https://docs.scala-lang.org/tour/by-name-parameters.html - передача параметров в функцию по имени (слайд 3)
 * https://docs.scala-lang.org/tour/unified-types.html - иерархия типов (слайд 4)
-* https://docs.scala-lang.org/tour/for-comprehensions.html - for comprehension (слайд 5)
