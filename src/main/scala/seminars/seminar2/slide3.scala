@@ -10,7 +10,9 @@ import users._
 // .equals (для сравнения) и .copy (для копирования с изменением полей)
 
 
-final case class Name(first: String, last: String)
+final case class Name(first: String, last: String) {
+  def show: String = first + " " + last
+}
 
 final case class User(login: String, name: Name, accessLevel: Int)
 
@@ -32,7 +34,7 @@ object users {
     User.apply("pupkin", Name.apply("Vasiliy", "Pupkin"), 1)
 }
 
-object print extends App {
+object toString extends App {
   println(user1)
   println(user2)
   println(user3)

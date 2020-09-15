@@ -25,10 +25,11 @@ object ifs extends App {
     }
   }
 
-  val dummy = new Dummy()
+  val dummy1 = new Dummy()
+  val dummy2 = new Dummy()
   // Оператор == использует .equals, а не сравнение по ссылке. Тип при этом автоматически не проверяется
-  println(dummy == dummy)
-  println(dummy == "String")
+  println(dummy1 == dummy2)
+  println(dummy1 == "String")
 }
 
 object fors extends App {
@@ -43,7 +44,7 @@ object fors extends App {
   // Фактически является проходом по специальной коллекции
 
   println(
-    for (i <- 1 to 10) yield i
+    for (i <- 1 to 10) yield i * 2
   )
 
   println(
