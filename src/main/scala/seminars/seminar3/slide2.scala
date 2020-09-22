@@ -37,7 +37,7 @@ object slide2 extends App {
 
   // Не скомплируется, так как не подходит тип
   //val collections =
-  //  Stack
+  //  StackOfBooks
   //    .empty
   //    .push("Vector")
 

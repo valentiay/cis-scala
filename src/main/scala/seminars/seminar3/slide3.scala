@@ -13,6 +13,7 @@ object slide3 extends App {
   // В этом примере Stack ковариантен по type-параметру A.
   // Это значит, что если некоторый тип X - подтип (наследник) Y, то и Stack[X] - подтип Stack[Y]
   sealed trait Stack[+A] {
+
     def push[B >: A](item: B): Stack[B] = StackNode[B](item, this)
 
     def pop: Option[(A, Stack[A])] =
@@ -28,8 +29,8 @@ object slide3 extends App {
 
   val stackOfBooks =
     EmptyStack
-      .push(Novel("Crime and Punishment"))
-      .push(Encyclopedia("Britannica", 5))
+      .push(Novel("Crime and Punishment")) // : Stack[Novel]
+      .push(Encyclopedia("Britannica", 5)) // : Stack[Book]
       .push(Novel("Lord of the rings"))
 
 }

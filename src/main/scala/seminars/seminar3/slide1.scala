@@ -32,7 +32,7 @@ object slide1 extends App {
 
   println()
 
-  val tuple = collections.pop.get
+  val tuple: (String, Stack[String]) = collections.pop.get
   println(tuple)
   println(tuple._1)
   println(tuple._2)

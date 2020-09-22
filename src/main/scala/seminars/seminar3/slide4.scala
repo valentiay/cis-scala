@@ -1,13 +1,16 @@
 package seminars.seminar3
 
-object slide4 {
-  abstract class Animal {
+object slide4 extends App {
+  trait Animal {
     def name: String
   }
+
   case class Cat(name: String) extends Animal
   case class Dog(name: String) extends Animal
 
-  abstract class Printer[-A] {
+  // В этом примере Printer контрвариантен по type-параметру A.
+  // Это значит, что если некоторый тип X - подтип (наследник) Y, то Printer[Y], наоборот, подтип Printer[X]
+  trait Printer[-A] {
     def print(value: A): Unit
   }
 

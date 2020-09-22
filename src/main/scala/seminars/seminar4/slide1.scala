@@ -1,4 +1,4 @@
-package seminars.seminar3
+package seminars.seminar4
 
 case class Error(message: String)
 

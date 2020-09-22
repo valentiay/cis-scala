@@ -29,7 +29,7 @@ object optionBasics extends App {
   // Option может обрабатывать null-pointer:
   println("null")
   println(Option("Not null"))
-  println(Option(null))
+  println(Option(null: String))
   println()
 
 }
@@ -63,6 +63,7 @@ object optionTransform extends App {
   println("filter")
   println(Some("42").filter(hasTwoChars))
   println(Some("123").filter(hasTwoChars))
+  println(None.filter(hasTwoChars))
   println()
 
 
@@ -70,16 +71,22 @@ object optionTransform extends App {
   def firstCharToDoubledInt(str: String): Option[Int] =
     for {
       firstChar <- str.headOption
-      int <- firstChar.toString.toIntOption
-    } yield 2 * int
+      a <- Some(10)
+      b <- firstChar.toString.toIntOption
+    } yield 2 * b + a
 
   println(firstCharToDoubledInt("12345"))
   println(firstCharToDoubledInt("hello"))
 
   def firstCharToDoubledIntUnsugared(str: String): Option[Int] =
     str.headOption
-      .flatMap(firstChar => firstChar.toString.toIntOption)
-      .map(int => 2 * int)
+      .flatMap(firstChar =>
+        Some(10).flatMap(a =>
+          firstChar.toString.toIntOption
+            .map(b => 2 * b + a)
+        )
+      )
+
 
   println(firstCharToDoubledIntUnsugared("12345"))
   println(firstCharToDoubledIntUnsugared("hello"))
@@ -107,11 +114,16 @@ object optionCheck extends App {
   val hasTwoChars: String => Boolean =
     str => str.length == 2
 
-  println("forall/exists")
+  println("exists")
   println(Some("42").exists(hasTwoChars))
-  println(Some("42").forall(hasTwoChars))
-  println(None.forall(hasTwoChars))
+  println(Some("421").exists(hasTwoChars))
   println(None.exists(hasTwoChars))
+  println()
+
+  println("forall")
+  println(Some("42").forall(hasTwoChars))
+  println(Some("421").forall(hasTwoChars))
+  println(None.forall(hasTwoChars))
 }
 
 object optionGet extends App {
