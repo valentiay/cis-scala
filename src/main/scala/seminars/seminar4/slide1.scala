@@ -78,3 +78,26 @@ object eitherCheck extends App {
   println(Left("123").contains("123"))
   // exists, forall etc.
 }
+
+object eitherGet extends App {
+  println("getOrElse")
+  println(Right("OldRight").getOrElse("Default"))
+  println(Left("OldLeft").getOrElse("Default"))
+  println()
+
+
+  val right = Right("NewRight")
+  val left = Left("NewLeft")
+  println("orElse")
+  println(Right("OldRight").orElse(left))
+  println(Left("OldLeft").orElse(right))
+  println(Left("OldLeft").orElse(left))
+  println()
+
+  println(Right[String, String]("Right").fold(_ * 2, _.reverse))
+  println(Left[String, String]("Left").fold(_ * 2, _.reverse))
+  println()
+
+  Right("Right").foreach(println)
+  Left("Left").foreach(println)
+}

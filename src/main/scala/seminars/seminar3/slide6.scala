@@ -149,6 +149,11 @@ object optionGet extends App {
   println(None.orElse(maybeDefault2))
   println()
 
+  // С помощью метода fold можно преобразовать значение, если оно есть, или предоставить значение по умолчанию, если его нет
+  println(Option("Hellothere").fold("Empty")(_.reverse))
+  println(Option.empty[String].fold("Empty")(_.reverse))
+  println()
+
   // Использовать значение, находящееся внутри Option, для side-эффекта можно с помощью метода .foreach
   Some("123").foreach(println)
   None.foreach(println)
