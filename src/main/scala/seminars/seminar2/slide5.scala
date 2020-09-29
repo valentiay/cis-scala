@@ -82,4 +82,6 @@ object patternMatching extends App {
   println(match3(cat1))
   println(match3(cat2))
   println(match3(parrot))
+
+  // TODO: при pattern matching можно распаковывать вложенные классы
 }
