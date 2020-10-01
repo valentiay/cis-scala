@@ -15,16 +15,16 @@ sbt reload
 sbt compile
 
 # Запустить конкретный Main-класс
-runMain seminars.seminar1.HelloWorld1
+sbt "runMain seminars.seminar1.HelloWorld1"
 
 # Запустить все тесты
 sbt test
 
 # Запустить тесты для конкретного пакета (например, пакета с тестами на 1 дз)
-testOnly homeworks.homework1.*
+sbt testOnly homeworks.homework1.*
 
 # Запустить тесты на конкретный клас (например, на первую задачу первого дз)
-testOnly homeworks.homework1.task1Test
+sbt testOnly homeworks.homework1.task1Test
 ```
 
 Также слайды и тесты можно запустить с помощью Intellij Idea с scala-плагином.
