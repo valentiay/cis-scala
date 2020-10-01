@@ -53,6 +53,7 @@ object lazyVals extends App {
   println(stringLazyVal)
 }
 
+@SuppressWarnings(Array("org.wartremover.warts.Var"))
 object vars extends App {
   var doubleVar = 12.34
   println(doubleVar)

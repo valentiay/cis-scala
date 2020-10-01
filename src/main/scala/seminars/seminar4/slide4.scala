@@ -28,11 +28,25 @@ object listConstruction extends App {
   println(list3 ::: list4) // Специфичный для списка функциональный метод
   println(list4.:::(list3)) // Он же, запись через точку
   println(list3 ++ list4) // Общий для всех коллекций метод для конкатенации
+  println(list3.++(list4))
 
   println()
 
   // Заполнение списка с помощью функции. Второй аргумент передается по имени (вычисляется при каждом использовании)
-  println(List.fill(10)(Random.nextInt(20)))
+  val list5 = List.fill(10) {
+    println("Evaluating")
+    val randomDouble = Random.nextDouble()
+    val randomInt = Random.nextInt(20)
+    randomInt + randomDouble
+  }
+
+  println(list5)
+
+  list5.take(2) match {
+    case a :: b :: c :: tail => println(s"1: $a, 2: $b, 3: $c, tail: $tail")
+//    case List(a, b) => println(s"$a, $b")
+    case a :: b :: Nil => println(s"$a, $b")
+  }
 }
 
 object listTransform extends App {
@@ -46,7 +60,7 @@ object listTransform extends App {
   val charList: List[Char] = list.map(el => alphabet(el))
   println(charList)
 
-  val wordList = list.map{
+  val wordList = list.map {
     case 1 => "one"
     case 2 => "two"
     case _ => "oops"
@@ -60,7 +74,7 @@ object listTransform extends App {
   println()
 
   println("collect")
-  val collectedList = list.collect{
+  val collectedList = list.collect {
     case 1 => "one"
     case 2 => "two"
   }

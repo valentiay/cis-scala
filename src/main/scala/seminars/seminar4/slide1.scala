@@ -34,9 +34,10 @@ object eitherTransform extends App {
   // "Правое" значение Either можно преобразовать методом .map
   val reverse: String => String =
     str => str.reverse
+
   println("map")
   println(Right("123").map(reverse))
-  println(Left("error!!!").map(reverse))
+  println(Left(Error("error!!!")).map(reverse))
   println()
 
 
@@ -90,6 +91,7 @@ object eitherGet extends App {
   val left = Left("NewLeft")
   println("orElse")
   println(Right("OldRight").orElse(left))
+  println(Right("OldRight").orElse(right))
   println(Left("OldLeft").orElse(right))
   println(Left("OldLeft").orElse(left))
   println()

@@ -6,3 +6,14 @@ scalaVersion := "2.13.3"
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.0" % "test"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test"
+
+
+addCompilerPlugin("org.wartremover" %% "wartremover" % "2.4.10" cross CrossVersion.full)
+
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.AsInstanceOf"
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.MutableDataStructures"
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.Null"
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.Return"
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.Throw"
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.Var"
+scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.While"

@@ -1,5 +1,6 @@
 package seminars.seminar3
 
+@SuppressWarnings(Array("org.wartremover.warts.Null"))
 object optionBasics extends App {
   // Option[+A] - тип для обозначения опциональных значний.
   // Имеет две реализации:
