@@ -1,5 +1,6 @@
-package seminars.seminar4
+package seminars.seminar5
 
+import scala.annotation.tailrec
 import scala.util.Random
 
 // List[+A] - неизменяемый односвязный список. Имеет две реализации
@@ -8,7 +9,7 @@ import scala.util.Random
 object listConstruction extends App {
 
   // Общий способ создания для многих коллекций
-  val list0 =  List(1, 2, 3)
+  val list0 = List(1, 2, 3)
   // Функциональный синтаксис для создания списка.
   // Фактически обычный вызов метода: если метод оканчивается на двоеточие,
   // то его можно без точки писать слева от объекта (list1, list2 - вызов этого метода через точку)
@@ -47,6 +48,35 @@ object listConstruction extends App {
     case List(a, b) => println(s"$a, $b")
     case a :: b :: Nil => println(s"$a, $b")
   }
+}
+
+object listPatternMatching extends App {
+  def showList(list: List[Int]): Unit =
+    list match {
+      case Nil => println("No elements")
+      case List(a) => println(s"One elment: $a")
+      case List(a, b) => println(s"Two elements: $a, $b")
+      // Альтернативная запись
+      case a :: b :: c :: Nil => println(s"Three elements: $a, $b, $c")
+      case list => println(s"Too long list ${list.size}")
+    }
+
+  showList(List.empty)
+  showList(List(1))
+  showList(List(1, 2))
+  showList(List(1, 2, 3))
+  showList(List(1, 2, 3, 4))
+
+  @tailrec
+  def findMinima(list: List[Int], results: List[Int] = Nil): List[Int] =
+    list match {
+      case a :: b :: c :: tail if b < a && b < c => findMinima(b :: c :: tail, b :: results)
+      case a :: b :: c :: tail => findMinima(b :: c :: tail, results)
+      case _ => results
+    }
+
+  println(findMinima(List(5, 2, 3, 4, 1, 8)))
+  println(findMinima(List(1, 2)))
 }
 
 object listTransform extends App {
@@ -108,4 +138,113 @@ object listTransform extends App {
   println("groupBy")
   // Возвращает ассоциативный массив, где ключами выступают значения, возвращаемые функцией
   println(list.groupBy(_ % 2))
+}
+
+object listCheck extends App {
+  val list = List(0, 1, 2, 3, 4, 5, 6)
+
+  println("isEmpty")
+  println(list.isEmpty)
+  println(Nil.isEmpty)
+  println()
+
+  println("nonEmpty")
+  println(list.nonEmpty)
+  println(Nil.nonEmpty)
+  println()
+
+  println("size")
+  println(list.size)
+  println()
+
+  println("contains")
+  println(list.contains(3))
+  println(list.contains(451))
+  println()
+
+  println("forall")
+  println(list.forall(_ < 0))
+  println(list.forall(_ < 3))
+  println(list.forall(_ < 10))
+  println()
+
+  println("exists")
+  println(list.exists(_ < 0))
+  println(list.exists(_ < 3))
+  println(list.exists(_ < 10))
+}
+
+object listFold extends App {
+  val list = List(0, 1, 2, 3, 4, 5, 6)
+
+  val reducedInts = list.reduce((a, b) => 10 * a + b)
+  println(reducedInts)
+
+  val foldedInts1 = list.foldLeft("")((acc, item) => acc + item.toString * item)
+  println(foldedInts1)
+
+  val foldedInts2 = list.foldRight("Nil")((item, acc) => item + " :: " + acc)
+  println(foldedInts2)
+
+  val mapReducedList = list.groupMapReduce(_ % 2)(_.toString)(_ + _)
+  println(mapReducedList)
+}
+
+object listComprehension extends App {
+  val ints = List(1, 2, 3, 4)
+  val chars = List('a', 'b', 'c')
+
+  val pairs1 =
+    for {
+      int <- ints
+      char <- chars
+    } yield (int, char)
+
+  val pairs2 =
+    ints.flatMap(int =>
+      chars.map(char =>
+        (int, char)
+      )
+    )
+
+  println(pairs1)
+  println(pairs2)
+
+  println(pairs1 == pairs2)
+
+
+  val xs = List(5, 4, 9, 1, 2)
+  val ys = List(8, 3, 5, 0, 4, 6)
+  val zs = List(15, 0, 12)
+
+  val numbers1 =
+    for {
+      x <- xs
+      y <- ys
+      z <- zs if z == x * y
+    } yield (x, y)
+
+  val numbers2 =
+    xs.flatMap(x =>
+      ys.flatMap(y =>
+        zs.withFilter(z => z == x * y).map(z => (x, y))
+      )
+    )
+
+  println(numbers1)
+  println(numbers2)
+  println(numbers1 == numbers2)
+
+
+  val intsTo = for {
+    i <- 1 to 10
+  } yield i * 2
+
+  println(intsTo)
+
+  val intsUntil = for {
+    i <- 1 until 10
+  } yield i * 2
+
+  println(intsUntil)
 }

@@ -1,8 +1,8 @@
-package seminars.seminar4
+package seminars.seminar5
 
 // Vector[+A] - неизменяемый вектор.
 // Предоставляет быстрый доступ по индексу и относительно быстрое добавление и удаление элементов в конец и в начало
-object slide5 extends App {
+object slide2 extends App {
   val vector = Vector(1, 2, 3, 4, 5)
 
   println(vector.updated(3, 42))

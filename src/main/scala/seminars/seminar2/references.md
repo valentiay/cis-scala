@@ -1,3 +1,4 @@
+# Ссылки
 * https://docs.scala-lang.org/tour/for-comprehensions.html - for comprehension (слайд 1)
 * https://docs.scala-lang.org/tour/classes.html - классы (слайд 2)
 * https://www.tutorialspoint.com/scala/scala_access_modifiers.htm - модификаторы доступа (слайд 2)

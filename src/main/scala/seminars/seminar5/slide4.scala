@@ -1,6 +1,6 @@
-package seminars.seminar4
+package seminars.seminar5
 
-object slide7 extends App {
+object slide4 extends App {
   val pair: (Int, String) = 1 -> "one"
 
   val map = Map(1 -> "one", 2 -> "two")
