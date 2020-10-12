@@ -6,6 +6,7 @@ scalaVersion := "2.13.3"
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.0" % "test"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test"
+libraryDependencies += "org.typelevel" %% "cats-core" % "2.1.1"
 
 
 addCompilerPlugin("org.wartremover" %% "wartremover" % "2.4.10" cross CrossVersion.full)

@@ -13,5 +13,10 @@ object slide4 extends App {
 
   println(map + (3 -> "three"))
   println(map + (2 -> "three"))
+  println(map.updated(5, "five"))
+  println(map.updatedWith(2) {
+    case Some(_) => None
+    case None => Some("two")
+  })
   println(map.keys)
 }

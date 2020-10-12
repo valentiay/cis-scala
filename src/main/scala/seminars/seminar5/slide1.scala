@@ -42,12 +42,6 @@ object listConstruction extends App {
   }
 
   println(list5)
-
-  list5.take(2) match {
-    case a :: b :: c :: tail => println(s"1: $a, 2: $b, 3: $c, tail: $tail")
-    case List(a, b) => println(s"$a, $b")
-    case a :: b :: Nil => println(s"$a, $b")
-  }
 }
 
 object listPatternMatching extends App {
@@ -58,6 +52,8 @@ object listPatternMatching extends App {
       case List(a, b) => println(s"Two elements: $a, $b")
       // Альтернативная запись
       case a :: b :: c :: Nil => println(s"Three elements: $a, $b, $c")
+      // Распаковка головы и хвоста списка
+      case List(x, xs@_*) => println(s"$x, $xs")
       case list => println(s"Too long list ${list.size}")
     }
 
@@ -71,7 +67,7 @@ object listPatternMatching extends App {
   def findMinima(list: List[Int], results: List[Int] = Nil): List[Int] =
     list match {
       case a :: b :: c :: tail if b < a && b < c => findMinima(b :: c :: tail, b :: results)
-      case a :: b :: c :: tail => findMinima(b :: c :: tail, results)
+      case _ :: b :: c :: tail => findMinima(b :: c :: tail, results)
       case _ => results
     }
 
