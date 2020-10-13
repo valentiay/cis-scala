@@ -13,7 +13,7 @@ object explicitDI extends App {
     def methodB: String = s"$cfg $http $database $serviceA"
   }
   class ServiceC(cfg: Config, http: HttpClient, database: DatabaseClient, serviceB: ServiceB) {
-    def methodC: String = s"$cfg $http $database $serviceC"
+    def methodC: String = s"$cfg $http $database $serviceB"
   }
 
   val http = new HttpClient(cfg)
@@ -43,7 +43,7 @@ object implicitDI extends App {
     def methodB: String = s"$cfg $http $database $serviceA"
   }
   class ServiceC(cfg: Config)(implicit http: HttpClient, database: DatabaseClient, serviceB: ServiceB) {
-    def methodC: String = s"$cfg $http $database $serviceC"
+    def methodC: String = s"$cfg $http $database $serviceB"
   }
 
   // Неявным может быть как val, так и lazy val и def

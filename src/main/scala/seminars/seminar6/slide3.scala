@@ -17,7 +17,6 @@ object order extends App {
 
   println(sort(List.fill(10)(nextString())))
 
-  import scala.math.Ordering.Double.TotalOrdering
   println(sort(List.fill(10)(Random.nextDouble())).map(_.formatted("%1.5f")))
 
 
@@ -33,6 +32,9 @@ object order extends App {
   println()
 
   println(sort(List.fill(10)(List.fill(Random.nextInt(3) + 1)(Random.nextInt(3)))).mkString("\n"))
+  println()
+
+  println(List.fill(10, 5)(Random.nextInt(10)).sorted.mkString("\n"))
 }
 
 object numeric extends App {
