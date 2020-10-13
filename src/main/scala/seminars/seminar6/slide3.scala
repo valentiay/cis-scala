@@ -35,6 +35,18 @@ object order extends App {
   println(sort(List.fill(10)(List.fill(Random.nextInt(3) + 1)(Random.nextInt(3)))).mkString("\n"))
 }
 
-object numeric {
+object numeric extends App {
+  def strangeSum[A](list: List[A])(implicit numeric: Numeric[A]): A =
+    list.filter(numeric.lt(list.head, _)).sum
+
+  val ints = List.fill(10)(Random.nextInt(1000))
+  println(ints)
+  println(strangeSum(ints))
+
+  println()
+
+  val bigDecimals = List.fill(10)(BigDecimal(Random.nextDouble()) * 10000000000000L)
+  println(bigDecimals)
+  println(strangeSum(bigDecimals))
 
 }
