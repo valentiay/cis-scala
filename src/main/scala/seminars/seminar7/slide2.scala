@@ -41,6 +41,8 @@ object complex extends App {
     for {
       user    <- getUser(userId)
       postIds <- getPostIds
+      // Future.traverse позволяет преобразовать коллекцию значений типа A сначала в коллекцию значений типа Future[B]
+      // с помощью функции A => Future[B], а затем эту коллекцию Future в одну Future с коллекцией внутри
       posts   <- Future.traverse(postIds)(getPost)
     } yield s"""
                |Hi, $user!

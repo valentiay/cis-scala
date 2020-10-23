@@ -7,6 +7,7 @@ import scala.util.{Failure, Random, Success}
 object callbacks extends App {
 
   import scala.concurrent.ExecutionContext.Implicits.global
+
   val findNeedle = Future {
     ("hay" * 200000 + "needle" + "hay" * 200).indexOf("needle")
   }.flatMap { index =>
@@ -30,12 +31,12 @@ object callbacks extends App {
   // Если в каком-то из коллбеков есть блокирующий вызов, то остальные могут не завершиться до окончания этого вызова
   findNeedle.onComplete {
     case Failure(exception) => println(s"[Callback1] Error occurred: $exception")
-    case Success(value)     => println(s"[Callback1] Found: $value")
+    case Success(value) => println(s"[Callback1] Found: $value")
   }
 
   findNeedle.onComplete {
     case Failure(exception) => println(s"[Callback2] Error occurred: $exception")
-    case Success(value)     => println(s"[Callback2] Found: $value")
+    case Success(value) => println(s"[Callback2] Found: $value")
   }
 
   findNeedle.foreach(value => println(s"[Callback3] Found: $value"))

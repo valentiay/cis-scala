@@ -18,10 +18,11 @@ object blocking1 extends App {
   def blockingOps(implicit ec: ExecutionContext) =
     Future.sequence(for (i <- 1 to 16) yield blockingOperation(i, 10000))
 
-  def somethingUseful(implicit ec: ExecutionContext) = Future {
-    println("Doing something useful")
-    2 + 2
-  }
+  def somethingUseful(implicit ec: ExecutionContext) =
+    Future {
+      println("Doing something useful")
+      2 + 2
+    }
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -44,7 +45,7 @@ object blocking2 extends App {
     }
 
   def blockingOps(implicit ec: ExecutionContext) =
-    Future.sequence(for (i <- 1 to 260) yield wrappedBlockingOperation(i, 10000))
+    Future.sequence(for (i <- 1 to 500) yield wrappedBlockingOperation(i, 10000))
 
   def somethingUseful(implicit ec: ExecutionContext) = Future {
     println("Doing something useful")
