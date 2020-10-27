@@ -39,9 +39,11 @@ object slide4 extends IOApp {
 
   def mergeSortF(vector: Vector[Int]): IO[Vector[Int]] = {
     if (vector.size == 1) {
+      // В IO.pure передается значение, которое вычисляется без side-эффектов
+      // В IO.raiseError аналогично можно передать ошибку
       IO.pure(vector)
     } else if (vector.size < 10000) {
-      IO(mergeSort(vector))
+      IO.pure(mergeSort(vector))
     } else {
       val (left, right) = vector.splitAt(vector.size / 2)
       for {

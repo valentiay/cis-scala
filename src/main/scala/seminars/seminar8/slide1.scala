@@ -12,6 +12,8 @@ object runAsync extends App {
   implicit val cs: ContextShift[IO] = IO.contextShift(ExecutionContext.global)
 
   def ioN(n: Int): IO[Unit] =
+    // IO.apply или IO.delay откладывает какое-то вычисление, которое может производить side эффекты
+    // IO не запускает каких-либо вычислений, только описывает их
     IO(println(s"Effect $n!"))
 
   val io0 = ioN(0)
@@ -75,10 +77,14 @@ object fromFuture extends IOApp {
   import scala.concurrent.ExecutionContext.Implicits.global
 
   def someLegacyMethod(x: Int): Future[String] =
-    Future("E" + "f" * x + "ect!")
+    Future{
+      println("Constructing string")
+      "E" + "f" * x + "ect!"
+    }
 
   def run(args: List[String]): IO[ExitCode] =
     for {
+      _ <- IO(println("Start"))
       value <- IO.fromFuture(IO(someLegacyMethod(10)))
       _ <- IO(println(value))
     } yield ExitCode.Success

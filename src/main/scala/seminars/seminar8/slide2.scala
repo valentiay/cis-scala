@@ -47,6 +47,7 @@ object slide2 extends IOApp {
 
   def httpRequest(url: String): String = {
     println(s"GET $url")
+    // final URLConnecton connecction = new URL(url).openConnection()
     val connection = new URL(url).openConnection
     connection.setRequestProperty("Accept-Charset", "UTF-8")
     val is = connection.getInputStream
