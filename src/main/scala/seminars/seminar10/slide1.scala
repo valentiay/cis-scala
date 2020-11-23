@@ -23,7 +23,7 @@ object compile extends IOApp {
 
       // .last - получить последний элемент (если он есть), вычислив все элементы
       _ <- IO(println("\nlast"))
-      last     <- stream.compile.last
+      last <- stream.compile.last
       _ <- IO(println(last))
 
       // .toList - вычислить все элементы списка и записать их в список

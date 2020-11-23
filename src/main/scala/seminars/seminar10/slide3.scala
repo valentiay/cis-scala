@@ -30,11 +30,21 @@ object slide3 extends IOApp {
         .toList
       _ <- IO(println(attempt))
 
+
+      _ <- IO(println("\nhandle"))
+      handle <- stream
+        .handleErrorWith(throwable => Stream.eval(IO(throwable.getMessage.toInt)))
+        .evalTap(int => IO(println(int)))
+        .compile
+        .toList
+      _ <- IO(println(handle))
+
       _ <- IO(println("\nattempts"))
       attempts <- Stream.eval(IO(Random.nextInt(2)))
         .map(1 / _)
         .attempts(Stream.constant(1.second))
         .evalTap(int => IO(println(int)))
+        .collect { case Right(a) => a }
         .take(10)
         .compile
         .toList

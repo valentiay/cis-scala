@@ -21,9 +21,10 @@ object slide6 extends IOApp {
       .split(_ == '\n')
       .zipWithIndex
       .map { case (chunk, idx) => s"$idx\t${chunk.foldLeft("")((str, byte) => str + byte.toChar)}" }
-      .evalTap(line => IO(println(line)))
+      .intersperse("\n")
       .compile
-      .drain
+      .string
+      .flatMap(str => IO(println(str)))
       .as(ExitCode.Success)
       .guarantee(IO(blockingExecutor.shutdown()))
 }
