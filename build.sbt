@@ -10,6 +10,7 @@ libraryDependencies += "org.typelevel" %% "cats-core" % "2.2.0"
 libraryDependencies += "org.typelevel" %% "cats-effect" % "2.2.0"
 libraryDependencies += "co.fs2" %% "fs2-core" % "2.4.4"
 libraryDependencies += "co.fs2" %% "fs2-io" % "2.4.4"
+libraryDependencies += "com.github.finagle" %% "finchx-core" % "0.32.1"
 
 addCompilerPlugin("org.wartremover" %% "wartremover" % "2.4.10" cross CrossVersion.full)
 
