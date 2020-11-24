@@ -17,7 +17,6 @@ object slide7 extends IOApp {
             case Some(b) => Some(reduce(b, f(a)))
             case None => Some(f(a))
           }
-          map
       }
   }
 

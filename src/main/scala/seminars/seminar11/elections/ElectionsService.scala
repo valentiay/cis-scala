@@ -24,7 +24,7 @@ final class ElectionsServiceImpl(cfg: ElectionsConfig, ref: Ref[IO, BallotBox]) 
     validateCandidate(candidate) *>
       ref.updateMaybe(ballotBox => putBallot(ballotBox, voter, candidate)).flatMap {
         case true =>
-          IO.pure(Ok(()))
+          IO.pure(NoContent[Unit])
         case false =>
           IO.raiseError(new IllegalArgumentException(s"$voter already voted for another candidate"))
       }
@@ -61,21 +61,4 @@ object ElectionsServiceImpl {
       case _ => None
     }
 
-  def showResults(ballotBox: BallotBox): String = {
-    val results = ballotBox.transform((_, voters) => voters.size).toList.sortBy(-_._2)
-    s"""Winner: ${results.head._1}
-       |
-       |${results.map { case (candidate, count) => s"$candidate | $count" }.mkString("\n")}
-       |
-       |Total votes: ${results.map(_._2).sum}
-    """.stripMargin
-  }
-
-  val candidates = List("Elmo", "Bert", "Ernie", "Count von Count")
-
-  //  val genVoters: IO[List[(String, String)]] =
-  //    IO(
-  //      List
-  //        .fill(100)(Random.alphanumeric.take(10).mkString)
-  //        .map(voter => voter -> candidates(Random.nextInt(candidates.size)))
 }

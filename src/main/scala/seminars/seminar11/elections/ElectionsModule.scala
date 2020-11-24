@@ -5,6 +5,7 @@ import io.finch._
 
 class ElectionsModule(implicit service: ElectionsService) extends Endpoint.Module[IO] {
 
+  /*_*/
   val putVoter: Endpoint[IO, Unit] =
     put(
       "candidate" ::
