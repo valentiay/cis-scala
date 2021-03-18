@@ -1,15 +1,23 @@
 package seminars.seminar5
 
-// Vector[+A] - неизменяемый вектор.
-// Предоставляет быстрый доступ по индексу и относительно быстрое добавление и удаление элементов в конец и в начало
-object slide2 extends App {
-  val vector = Vector(1, 2, 3, 4, 5)
+import scala.util.Random
 
-  println(vector.updated(3, 42))
-  println(vector(3))
-  println(0 +: vector)
-  println(vector :+ 6)
-  println(vector.indexOf(3))
-  println(vector.size)
-  println(vector :++ vector.reverse)
+// Set[A] - неизменяемое множество. Быстрая проверка на вхождение элемента во множество
+object slide2 extends App {
+  val set1 = Set(1, 2, 3)
+  val set2 = Set(3, 4, 5)
+  println(set1.contains(2))
+  println(set1(2))
+  println(set1.contains(10))
+  println(set1(10))
+  println()
+
+  println(set1 + 42)
+  println(set1 - 2)
+  println(set1 ++ set2)
+  println(set1 -- set2)
+  println(set1.intersect(set2))
+  println()
+
+  println(List.fill(10)(Random.nextInt(5)).toSet)
 }

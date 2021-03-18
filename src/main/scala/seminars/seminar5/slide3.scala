@@ -1,23 +1,22 @@
 package seminars.seminar5
 
-import scala.util.Random
-
-// Set[A] - неизменяемое множество. Быстрая проверка на вхождение элемента во множество
 object slide3 extends App {
-  val set1 = Set(1, 2, 3)
-  val set2 = Set(3, 4, 5)
-  println(set1.contains(2))
-  println(set1(2))
-  println(set1.contains(10))
-  println(set1(10))
+  val pair: (Int, String) = 1 -> "one"
+
+  val map = Map(1 -> "one", 2 -> "two")
+
+  println(map(1))
+  println(map.get(2))
+  println(map.getOrElse(2, "default"))
+  println(map.getOrElse(4, "default"))
   println()
 
-  println(set1 + 42)
-  println(set1 - 2)
-  println(set1 ++ set2)
-  println(set1 -- set2)
-  println(set1.intersect(set2))
-  println()
-
-  println(List.fill(10)(Random.nextInt(5)).toSet)
+  println(map + (3 -> "three"))
+  println(map + (2 -> "three"))
+  println(map.updated(5, "five"))
+  println(map.updatedWith(2) {
+    case Some(_) => None
+    case None => Some("two")
+  })
+  println(map.keys)
 }
