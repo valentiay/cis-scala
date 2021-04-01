@@ -17,7 +17,8 @@ object slide2 extends App {
   println(set1 ++ set2)
   println(set1 -- set2)
   println(set1.intersect(set2))
+  println(set1.union(set2))
   println()
 
-  println(List.fill(10)(Random.nextInt(5)).toSet)
+  println(Set.fill(10)(Random.nextInt(5)))
 }

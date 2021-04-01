@@ -19,4 +19,9 @@ object slide3 extends App {
     case None => Some("two")
   })
   println(map.keys)
+  println(map.keySet)
+  println(map.values)
+  println(map.map(item => item.swap))
+  println(map.map { case (k, v) => (k, v * 2) })
+  println(map.transform { case (k, v) => v * k })
 }
