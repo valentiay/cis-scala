@@ -15,6 +15,7 @@ import scala.concurrent.duration._
 //   .take: F[A] - взять элемент из ячейки. Если ячейка пуста, ждет, пока она заполнится
 //   .put(a: A): F[Unit] - положить элемент в ячейку. Если ячейка заполнена, ждет, пока она станет пустой
 //   .read: F[A] - прочитать элемент из ячейки, если она непуста. Если ячейка пуста, ждет, пока она заполнится
+//   .tryTake, .tryPut, .tryRead
 object slide3 extends IOApp {
 
   val cacheTtlMs = 10000L
@@ -28,7 +29,7 @@ object slide3 extends IOApp {
       _ <- IO(println("Trying to update cache"))
       cache <- mvar.take
       now <- Clock[IO].monotonic(TimeUnit.MILLISECONDS)
-      newCache <- if (cache._2 > now) IO.pure(cache) else compute.map(_ -> (now + cacheTtlMs))
+      newCache <- if (cache._2 > now) IO.pure(cache) else compute.map(value => (value, now + cacheTtlMs))
       _ <- mvar.put(newCache)
     } yield newCache._1
 

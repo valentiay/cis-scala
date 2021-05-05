@@ -24,7 +24,7 @@ object sleep extends IOApp {
       _ <- IO(println(s"[$tickIntervalMs] $zonedDateTimeNow"))
       // Тайпкласс Timer позволяет откладывать действия во времени.
       // Из Timer также можно получить экземпляр тайпкласса Clock через метод Timer[IO].clock
-      _ <- Timer[IO].sleep(millisTillTick(tickIntervalMs, zonedDateTimeNow))
+      _ <- IO.sleep(millisTillTick(tickIntervalMs, zonedDateTimeNow))
       // IO можно вызывать рекурсивно (не обязательно хвосторекурсивно) без переполнения стэка
       _ <- tick(tickIntervalMs)
     } yield ()

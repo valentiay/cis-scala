@@ -15,8 +15,9 @@ import scala.util.Random
 object slide4 extends IOApp {
   def heavyMethod(semaphore: Semaphore[IO])(duration: FiniteDuration): IO[Unit] =
     semaphore.acquire *>
-      IO(println(duration)) *>
+      IO(println("Start " + duration)) *>
       IO.sleep(duration) *>
+      IO(println("End " + duration)) *>
       semaphore.release
 
   def run(args: List[String]): IO[ExitCode] =
