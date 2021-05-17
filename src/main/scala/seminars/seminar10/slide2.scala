@@ -27,7 +27,7 @@ object slide2 extends IOApp {
       _ <- IO(println(collect))
 
       _ <- IO(println("intersperse"))
-      intersperse = Stream.range(0, 5).intersperse(42).toList
+      intersperse = Stream.iterate(0)(_ + 1).map(_.toString).take(50).intersperse(",").compile.fold("")(_ + _)
       _ <- IO(println(intersperse))
 
       _ <- IO(println("flatMap"))
@@ -35,7 +35,7 @@ object slide2 extends IOApp {
       _ <- IO(println(flatMap))
 
       _ <- IO(println("evalMap"))
-      evalMap <- Stream(1, 2, 3).evalMap(i => IO(i.toString  * i)).compile.toList
+      evalMap <- Stream(1, 2, 3).evalMap(i => IO(i.toString * i)).compile.toList
       _ <- IO(println(evalMap))
 
       _ <- IO(println("repeat"))

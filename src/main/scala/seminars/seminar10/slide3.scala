@@ -42,10 +42,9 @@ object slide3 extends IOApp {
       _ <- IO(println("\nattempts"))
       attempts <- Stream.eval(IO(Random.nextInt(2)))
         .map(1 / _)
-        .attempts(Stream.constant(1.second))
+        .attempts(Stream.iterate(1.second)(_ * 2).takeWhile(_ < 1.minute) ++ Stream.constant(1.minute))
         .evalTap(int => IO(println(int)))
         .collect { case Right(a) => a }
-        .take(10)
         .compile
         .toList
       _ <- IO(println(attempts))
