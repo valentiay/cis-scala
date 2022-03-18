@@ -29,7 +29,10 @@ object ifs extends App {
   val dummy2 = new Dummy()
   // Оператор == использует .equals, а не сравнение по ссылке. Тип при этом автоматически не проверяется
   println(dummy1 == dummy2)
+  println(dummy1.equals(dummy2))
   println(dummy1 == "String")
+  // Метод .eq сравнивает объекты по ссылке
+  println(dummy1.eq(dummy2))
 }
 
 object fors extends App {
@@ -64,5 +67,5 @@ object fors extends App {
   println()
 
   // For comprehension с side-эффектом
-  for (i <- 1 until 12 by 3) println(i)
+  for (i <- 1 until 13 by 3) println(i)
 }

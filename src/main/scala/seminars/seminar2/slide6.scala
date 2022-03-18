@@ -44,7 +44,7 @@ object BinaryTree {
 
 }
 
-object slide5 extends App {
+object slide6 extends App {
   val tree =
     Leaf
       .insert(5)
@@ -54,4 +54,14 @@ object slide5 extends App {
       .insert(6)
 
   tree.dump()
+
+  // Из каждого вызова .insert возвращается новый экземпляр трейта BinaryTree.
+  // Внутренняя структура частично сохраняется. Меняется только обновленное поддерево.
+  val tree1 = Leaf.insert(5)
+  val tree2 = tree1.insert(4)
+  val tree3 = tree2.insert(8)
+  println(tree1)
+  println(tree2)
+  println(tree3)
+
 }

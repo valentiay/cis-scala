@@ -1,6 +1,6 @@
 package seminars.seminar2
 
-object slide6 extends App {
+object slide4 extends App {
 
   // Пример части методов, которые генерируются для
   // final case class Name(first: String, last: String)
@@ -20,6 +20,8 @@ object slide6 extends App {
       new Name(first, last)
   }
 
+  // Объект-компаньон класса Name. Является синглтоном, нельзя создать вручную через new.
+  // Все методы объекта - аналоги статичных методов в Java
   object Name {
     def apply(first: String, last: String) =
       new Name(first, last)

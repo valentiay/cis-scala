@@ -2,7 +2,6 @@ package seminars.seminar5
 
 import scala.collection.mutable
 
-@SuppressWarnings(Array("org.wartremover.warts.All"))
 object slide6 extends App {
   val a = mutable.Buffer(1, 2, 3, 4)
   a.update(1, 2)

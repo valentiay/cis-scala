@@ -28,11 +28,31 @@ object methodsAndFunctions extends App {
   )
 
   // Преобразование метода в функцию (eta expansion)
-  val greeterFunction = greeter _
+  val greeterFunction: String => String = greeter _
 
   println(
     List("A", "B", "C").map(greeter).mkString("\n")
   )
+
+  // Функция высшего порядка
+  def map[T](list: List[String])(f: String => T): List[T] =
+    for (x <- list) yield f(x)
+
+  // Разные способы передать функцию в качестве параметра (через лямбды, имя метода)
+  println(map(List("A", "B"))(_ * 2))
+  println(map(List("A", "B")){ x =>
+    println(x)
+    "C"
+  })
+  println(map(List("A", "B"))(greeter))
+  println(map(List("A", "B"))(greeterFunction))
+
+  def combine[A, B, C](a: A, b: B)(f: (A, B) => C): C =
+    f(a, b)
+
+  println(combine("A", 10)((a, b) => a * b))
+  println(combine(10, 10)((a, b) => a * b))
+  println(combine(false, true)(_ && _))
 }
 
 object namedParameters extends App {

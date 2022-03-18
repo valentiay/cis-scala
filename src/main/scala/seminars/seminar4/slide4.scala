@@ -129,6 +129,9 @@ object listTransform extends App {
   println(list.tail)
   println()
 
+  println(list.take(5))
+  println(list.drop(5))
+
   // Несколько методов, которые возвращают итератор
   println("iterator utilities")
   // Разбивает список на списки длины n
